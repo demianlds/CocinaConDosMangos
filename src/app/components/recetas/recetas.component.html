@@ -1,0 +1,63 @@
+<h1>{{titulo}}</h1>
+
+<div class="message success" *ngIf="status == 'success'">
+	La receta fue enviada correctamente
+</div>
+
+<div class="message failed" *ngIf="status == 'failed'">
+	La receta no se ha podido enviar
+</div>
+
+
+<br>
+
+<form #recetaForm="ngForm" (ngSubmit)="onSubmit(recetaForm)">
+	
+	<label for="nombre">Nombre</label> <br/>
+
+	<input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="receta.nombre" required/> <br/>
+
+	<p *ngIf="nombre.touched && !nombre.valid" class="obligatorio">Campo Obligatorio</p>
+	
+	<label for="ingredientes">Ingredientes</label> <br/>
+
+	<input type="text" name="ingredientes" #ingredientes="ngModel" [(ngModel)]="receta.ingredientes" required/> <br/>
+
+	<p *ngIf="ingredientes.touched && !ingredientes.valid" class="obligatorio">Campo Obligatorio</p>
+
+	
+	<label for="contenido">Contenido</label> <br/>
+
+	<textarea name="contenido" #contenido="ngModel" [(ngModel)]="receta.contenido" required> </textarea> <br/>
+
+	<p *ngIf="contenido.touched && !contenido.valid" class="obligatorio">Campo Obligatorio</p>
+
+	<input type="submit" value="Enviar" [disabled]="!recetaForm.form.valid" />
+
+</form>
+
+
+<br>
+
+<mat-accordion multi="true" hideToggle>
+
+<mat-expansion-panel class="expand" *ngFor="let receta of recetas">
+	<mat-expansion-panel-header>
+		<mat-panel-title class="receta-title">
+			
+			{{receta.nombre}}
+
+		</mat-panel-title>
+	<mat-panel-description class="description">
+			 	{{receta.ingredientes}}
+	</mat-panel-description>
+	
+</mat-expansion-panel-header>
+<section>
+	{{receta.contenido}}
+</section>
+</mat-expansion-panel>
+
+</mat-accordion>
+
+

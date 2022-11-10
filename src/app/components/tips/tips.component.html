@@ -1,0 +1,25 @@
+<h1>{{titulo}}</h1>
+
+<br>
+
+<mat-accordion multi="true" hideToggle>
+
+<mat-expansion-panel class="expand2" *ngFor="let tip of tips">
+	<mat-expansion-panel-header>
+		<mat-panel-title class="tip-title">
+			
+			{{tip.nombre}}
+
+		</mat-panel-title>
+	<mat-panel-description class="description">
+		
+	</mat-panel-description>
+	
+</mat-expansion-panel-header>
+<section>
+	{{tip.contenido}}
+</section>
+</mat-expansion-panel>
+
+</mat-accordion>
+

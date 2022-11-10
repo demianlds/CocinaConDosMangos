@@ -1,0 +1,48 @@
+<h2>Contacto</h2>
+
+<div class="message success" *ngIf="status == 'success'">
+	La sugerencia fue enviada correctamente
+</div>
+
+<div class="message failed" *ngIf="status == 'failed'">
+	La sugerencia no se ha podido enviar
+</div>
+
+
+
+<!--On submit como metodo-->
+
+<form #usuarioForm="ngForm" (ngSubmit)="onSubmit(usuarioForm)">
+	
+	<label for="nombre">Nombre</label> <br/>
+
+	<input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="usuario.nombre" required/> <br/>
+
+	<p *ngIf="nombre.touched && !nombre.valid" class="obligatorio">Campo Obligatorio</p>
+	
+	<label for="apellido">Apellido</label> <br/>
+
+	<input type="text" name="apellido" #apellido="ngModel" [(ngModel)]="usuario.apellido" required/> <br/>
+
+	<p *ngIf="apellido.touched && !apellido.valid" class="obligatorio">Campo Obligatorio</p>
+
+	
+	<label for="email">Mail</label> <br/>
+
+	<input type="email" name="mail" #mail="ngModel" [(ngModel)]="usuario.mail" required/> <br/>
+
+	<p *ngIf="mail.touched && !mail.valid" class="obligatorio">Campo Obligatorio</p>
+
+	
+	<label for="mensaje">Mensaje</label> <br/>
+
+	<textarea name="mensaje" #mensaje="ngModel" [(ngModel)]="usuario.mensaje" required> </textarea> <br/>
+
+	<p *ngIf="mensaje.touched && !mensaje.valid" class="obligatorio">Campo Obligatorio</p>
+
+	<input type="submit" value="Enviar" [disabled]="!usuarioForm.form.valid" />
+
+	<!--disabled por si es diferente a form contacto
+		no permita ejecutar el submit-->
+
+</form>
